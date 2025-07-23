@@ -10,7 +10,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import rigdag.tattoowbpg.dto.ProfileDTO;
+import rigdag.tattoowbpg.entities.Profile;
 import rigdag.tattoowbpg.entities.TattooImage;
+import rigdag.tattoowbpg.services.ProfileService;
 import rigdag.tattoowbpg.services.TattooImageService;
 
 @RestController //Equivalent to @Controller for the class + @ResponseBody for each method
@@ -19,6 +22,9 @@ public class APIController {
 
     @Autowired
     private TattooImageService tattooImageService;
+
+    @Autowired
+    private ProfileService profileService;
 
     @GetMapping
     public List<TattooImage> getTattooDataByType(
@@ -45,5 +51,11 @@ public class APIController {
         else{
             return null;
         }
+    }
+
+    @GetMapping("/profile")
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
+    public ProfileDTO getProfile(){
+        return new ProfileDTO(profileService.getProfile(1L).orElse(null));
     }
 }
