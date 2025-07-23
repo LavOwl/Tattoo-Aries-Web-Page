@@ -1,0 +1,141 @@
+:root{
+    --img-height: 18rem;
+}
+
+main{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.uploadForm{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    background: linear-gradient(to right,#131314, #343a40);
+    border-radius: 20px;
+    color: aliceblue;
+    padding: 1rem;
+    height: fit-content;
+}
+
+.imgAndUploadWrapper{
+    width: fit-content;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.uploadLabel{
+    position: relative;
+    display: flex;
+    height: var(--img-height);
+    aspect-ratio: calc(3/4);
+    padding: 0.18rem;
+    text-align: center;
+    border-radius: 20px;
+    border: 2.5px dashed white;
+    background: #131314;
+    background-size: cover;
+    color: white;
+    margin-left: auto;
+    margin-top: 8%;
+    align-items: center;
+    justify-content: center;
+}
+
+.uploadIcon{
+    width: 4rem;
+}
+
+.uploadLabel label{
+    text-decoration:underline;
+    color: #0077b6;
+}
+
+.uploadLabel label:hover{
+    cursor: pointer;
+}
+
+main{
+    width: 80%;
+    margin: 0% 10%;
+}
+
+
+.texts{
+    display: flex;
+    flex-direction: column;
+    min-width: 300px;
+    flex: 1 1 300px;
+}
+
+.texts > label{
+    display: block;
+    margin-bottom: 5px;
+}
+
+
+
+.texts > input, textarea, select{
+    background-color: rgba(255, 255, 255, 0);
+    border: none;
+    font-size: 1rem;
+    border-bottom: 1px solid white;
+    margin-bottom: 1rem;
+    color: white;
+    letter-spacing: normal;
+}
+
+.texts > input{
+    padding-bottom: 0.3rem;
+}
+
+.texts > input:focus, textarea:focus, select:focus{
+    outline: none;
+}
+
+.texts > textarea{
+    font-family: inherit !important;
+    resize: none;
+    height: auto;
+    min-height: unset;
+}
+
+option, datalist{
+    background-color: #343a40;
+}
+
+select{
+    margin-top: 3px;
+    padding-bottom: 0.3rem;
+}
+
+.loader{
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border: 3px solid white;
+    border-top: 3px solid black;
+    border-radius: 50%;
+    padding: 1rem;
+    z-index: 2;
+    animation: rotate 1s infinite;
+}
+
+@keyframes rotate {
+    0% {
+      transform: translate(-50%, -50%) rotate(0deg);
+    }
+    100% {
+      transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+.send-wrapper .editOptions button{
+    color: white;
+    border: 1px solid white;
+}
+

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout}">
+<head>
+    <link rel="stylesheet" th:href="@{/css/aboutme.css}">
+    <link rel="stylesheet" th:href="@{/css/buttons.css}">
+    <title>Inicio | Tattoos</title>
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+</head>
+<body>
+    <main layout:fragment="content">
+        <form id="uploadForm">
+            <header>
+                <div class="grid1">
+                    <input id="uploadInput" class="uploadInput" type="file" name="image" accept="image/*" th:data-image="${profile.getImage()}" hidden>
+                    <div class="invisbleCircle">
+                        <label id="uploadLabel" class="uploadLabel" for="uploadInput"></label>
+                        <img th:src="@{/icons/camera.png}">
+                    </div>
+                </div>
+
+                <div class="data">
+                    <ul class="socialMedia">
+                        <li th:each="network : ${socialMedia}">
+                            <a th:href="${network.getLink()}" target="_blank"><img th:src="${network.getImage()}"></a>
+                        </li>
+                    </ul>
+                
+                    <div class="cyling-input-wrapper"><input class="editableInput" th:value="${profile.getFullname()}" name="fullname" id="name" type="text" placeholder="Nombre"></div>
+                    <div class="cyling-input-wrapper"><input class="editableInput" name="age" id="age" type="date"></div>
+                    <div class="cyling-input-wrapper"><input class="editableInput" th:value="${profile.getPronouns()}" name="pronouns" id="pronouns" type="text" placeholder="Pronombres"></div>
+                </div>
+
+            </header>
+            <section>
+                <label for="description">Descripción</label>
+                <textarea th:text="${profile.getDescription()}" name="description" oninput="autoResize(this)" id="description"></textarea>
+
+                <div class="send-wrapper">
+                    <button class="uploadButton" type="submit">Guardar Cambios</button>
+                </div>
+            </section>
+        </form>
+
+        <div id="darkBackground" class="darkBackground"></div>
+        <div id="editBox" class="editBox">
+            <div id="imageArea" class="imageArea">
+                <img id="imageToEdit" class="imageToEdit">
+                <div id="imageOverlay" class="imageOverlay"></div>
+                <canvas id="croppedCanvas" class="circle"></canvas>
+            </div>
+            <input id="sizeInput" type="range" min="0" max="100" value="0">
+            <div class="editOptions">
+                <button onclick="closePopUp()">Cancelar</button>
+                <button onclick="cropAndSend(); closePopUp()">Confirmar</button>
+            </div>
+        </div>
+
+        <script>
+            let offsetX = 0;
+            let offsetY = 0;
+            const baseImage = document.getElementById("uploadInput");
+            const base64Image = baseImage.getAttribute("data-image");
+            window.onload = function(){
+                uploadLabel.style.backgroundImage = `url(${base64Image})`;
+            };
+        </script>
+        <script th:src="@{/js/adjustimage.js}"></script>
+        <script th:src="@{/js/cropImage.js}"></script>
+        <script th:src="@{/js/input.js}"></script>
+        <script th:src="@{/js/autoResizeTextarea.js}"></script>
+    </main>
+</body>
+</html>
+
