@@ -1,56 +1,53 @@
 .editOptions button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+
     font-weight: 200;
+    font-size: 0.8rem;
     letter-spacing: 0.8px;
-    padding: calc(13rem/16) calc(20rem/16) calc(13rem/16);
-    outline: 0;
+    padding: 0.5rem 0rem;
+    outline: transparent;
     border: 1px solid black;
     cursor: pointer;
     position: relative;
-    background-color: rgba(0, 0, 0, 0);
+    border-radius: 2rem;
+    background-color: white;
+    color: black;
     z-index:1;
-    min-width: 7rem;
+    width: 50%;
+    font-family: inherit;
+    overflow: hidden;
 }
-  
-.editOptions button:first-child:after{
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    opacity: 0;
-    transition: 0.3s;
-    background-color: #FB130D;
-    left: -12px;
-    top: -12px;
-}
-  
-.editOptions button:last-child:after {
-    content: "";
-    position: absolute;
-    right: -12px;
-    top: 12px;
-    width: 100%;
-    height: 100%;
-    background-color: #E2A9AF;
-    z-index: -1;
-    opacity: 0;
-    transition: 0.3s;
-}
-  
-.editOptions button:last-child:hover:after {
-    top: 0px;
-    right: 0px;
-    opacity: 1;
-}
-
-.editOptions button:first-child:hover:after {
-    top: 0px;
-    left: 0px;
-    opacity: 1;
+.editOptions button:hover {
+    background-color: rgba(200, 200, 200, 1);
 }
 
 .editOptions{
     display: flex;
     justify-content: end;
     gap: 1rem;
+}
+
+.editOptions button img{
+    width: 1.2rem;
+    height: 1.2rem;
+    padding-right: 0.5rem;
+}
+
+.editOptions button:nth-child(2) img{
+    float: right;
+}
+
+.editOptions button:hover img{
+    animation: bounce 0.3s ease-in-out;
+}
+
+
+@keyframes bounce {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-0.2rem); }
+    100% { transform: translateY(0); }
 }

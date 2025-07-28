@@ -7,8 +7,9 @@ import { categories } from "../constants/tattooCategories";
 function NavigationBar(){
     return (
         <>  
-            <nav className="fixed z-10 left-0 top-0 w-full h-16 bg-white/10 backdrop-blur-xl flex items-center justify-between px-4">
-                <HashLink to="/#start" className="text-white text-xl font-bold">Aries Tattoos</HashLink>
+            <nav className="fixed z-10 left-0 top-0 w-full h-16 flex items-center justify-between px-4">
+            <div className="absolute left-0 top-0 w-full h-full z-[-1] bg-white/10 backdrop-blur-xl"></div>
+                <HashLink smooth to="/#start" className="text-white text-3xl font-['Whisper']">Aries Tattoos</HashLink>
                 <div className="hidden md:flex w-1/2">
                     <AnchorElement url="/#start" text={"Inicio"}/>
                     <AnchorElement url="/#aboutme" text={"Sobre mí"}/>

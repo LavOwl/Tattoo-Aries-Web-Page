@@ -15,14 +15,14 @@ public class TattooImageDTO {
 
     private String type;
 
-    private String URL;
+    private String url;
 
     public TattooImageDTO(TattooImage tattooImage, boolean isPreview){
         this.id = tattooImage.getId();
         this.title = tattooImage.getTitle();
         this.description = tattooImage.getDescription();
         this.type = tattooImage.getType();
-        this.URL = isPreview ? "data:image/jpeg;base64," + Base64.getEncoder().encodeToString(tattooImage.getPreviewImage()) : "data:image/jpeg;base64," + Base64.getEncoder().encodeToString(tattooImage.getImage());
+        this.url = isPreview ? "data:image/jpeg;base64," + Base64.getEncoder().encodeToString(tattooImage.getPreviewImage()) : "data:image/jpeg;base64," + Base64.getEncoder().encodeToString(tattooImage.getImage());
     }
 
 }

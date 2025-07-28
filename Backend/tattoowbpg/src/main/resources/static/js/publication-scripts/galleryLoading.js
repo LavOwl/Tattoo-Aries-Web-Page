@@ -3,11 +3,6 @@ function fetchImages(type, page) {
         .then(response => response.json())
         .then(images => {
             appendImages(images);
-            //const skeleton = document.querySelectorAll('li:has(.shimmer)');
-            //skeleton.forEach(card => card.style.display = 'none');
-            setTimeout(() => document.getElementById("-loading-skeleton").style.opacity = 0, 1000);
-            setTimeout(() => {document.getElementById("-loading-skeleton").style.display = "none"; updateButtons();}, 2000);
-            
         })
         .catch(error => console.error('Error fetching images:', error));
 }
@@ -46,14 +41,3 @@ function appendImages(images){
     });
     requestIdleCallback(() => list.appendChild(fragment));
 }
-
-fetchImages("1", 0);
-/*
-window.onscroll = function() {
-    if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
-        // User reached the bottom, load the next page
-        let currentPage = document.getElementById('currentPage').value;
-        fetchImages(currentPage);
-        document.getElementById('currentPage').value = parseInt(currentPage) + 1;
-    }
-};*/

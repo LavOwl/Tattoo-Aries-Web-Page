@@ -7,8 +7,8 @@
 <body>
     <h2>Iniciar Sesión</h2>
     <form th:action="@{/login}" method="post">
-        <label>Usuario: <input type="text" name="username"></label>
-        <label>Contraseña: <input type="password" name="password"></label>
+        <label>Usuario: <input type="text" maxlength="255" name="username"></label>
+        <label>Contraseña: <input type="password" maxlength="255" name="password"></label>
         <button type="submit">Iniciar Sesión</button>
     </form>
 </body>

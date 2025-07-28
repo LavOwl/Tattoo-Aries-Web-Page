@@ -16,11 +16,11 @@ function Gallery() {
     return (
         <>
             <h1 className="text-3xl text-white mb-4">{type && categories.get(type)}</h1>
-            <ul className="flex h-fit w-full p-8 rounded-xl bg-gray-900 border border-white gap-2 items-center justify-center flex-wrap">
-                {tattoos.length === 0 && <p className="text-white w-full block text-center">No publiqué nada aún &lt;3</p>}
-                {tattoos.map((tattoo: ITattoo, index: number) => (
-                    <li key={index}><Card data={tattoo}/></li>
-                ))}
+            <ul className="h-fit w-full p-8 rounded-xl bg-white/10 select-none border border-white grid justify-center grid-cols-[repeat(auto-fit,minmax(10rem,1fr))] gap-8">
+                    {!isLoading && !isError && tattoos.length === 0 && <p className="text-white w-full block text-center">No publiqué nada aún -`♡´-</p>}
+                    {tattoos.map((tattoo: ITattoo, index: number) => (
+                        <li key={index}><Card data={tattoo}/></li>
+                    ))}
             </ul>
         </>
     );

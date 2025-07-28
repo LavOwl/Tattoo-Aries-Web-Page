@@ -7,11 +7,22 @@
 </head>
 <body>
     <div th:fragment="card(image)" class="card">
-        <img class="tattooImg" th:src="@{image.getImage()}" alt="Tattoo Image">
+        <img class="tattooImg" th:src="${image.getUrl()}" alt="Tattoo Image">
         <div class="textcontainer">
             <h3 th:text="${image.getTitle()}"></h3>
             <p th:text="${image.getDescription()}"></p>
         </div>
+        <div class="dot-menu-wrapper">
+            <input type="checkbox" class="dot-menu"/>
+                <div class="dot-drop-down">
+                    <ul>
+                        <li><button type="button" onClick="editPost(${image})">Editar</button></li>
+                        <li><button type="button" th:attr="data-title=${image.title}" onclick="deletePost(this.dataset.title, this)">Eliminar</button></li>
+                        <li><button type="button" onClick="attachExtra(${image})">Adjuntar</button></li>
+                    </ul>
+                </div>
+        </div>
+        <script th:src="@{/js/publication-scripts/postMenu.js}"></script>
     </div>
 </body>
 </html>

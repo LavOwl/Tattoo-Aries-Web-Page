@@ -56,7 +56,6 @@
 
 .textcontainer h3{
     color: white;
-    inline-size: 13.5rem;
     overflow-wrap: break-word;
     transform: translateY(0%);
     padding-bottom: 1rem;
@@ -83,6 +82,57 @@
 
 .card:hover .textcontainer p{
     top: 200%;
+}
+
+
+.transparent-card{
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    background-color: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(10px);
+    border: 1px solid white;
+    border-radius: 2rem;
+    position: relative;
+    aspect-ratio: calc(3/4);
+    height: var(--card-height);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    cursor: pointer;
+}
+
+.plus-sign {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+    border-radius: 50%;
+    width: 4.5rem;
+    aspect-ratio: 1;
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.plus-sign::before, .plus-sign::after {
+    content: '';
+    position: absolute;
+    width: 60%;
+    height: 15%;
+    border-radius: 2rem;
+    background: rgba(0,0,0,0.1);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.plus-sign::before{
+    background: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0.1) 0%,
+    rgba(0, 0, 0, 0.1) 37.5%,
+    rgba(0, 0, 0, 0) 37.5%,
+    rgba(0, 0, 0, 0) 62.5%,
+    rgba(0, 0, 0, 0.1) 62.5%,
+    rgba(0, 0, 0, 0.1) 100%
+);
+    transform: translate(-50%, -50%) rotate(90deg);
 }
 
 .placeholder-card{
@@ -134,4 +184,86 @@
     100% {
         left: 100%;
     }
+}
+
+.card:hover .dot-menu{
+    display: flex;
+}
+
+.dot-menu{
+    appearance: none;
+    position: absolute;
+    top:0.2rem;
+    right: 0.1rem;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    word-break: break-word;
+    width: 1rem;
+    aspect-ratio: 1;
+    justify-content: center;
+    background-color: transparent;
+    outline: transparent;
+    border: none;
+    user-select: none;
+    line-height: 0.5rem;
+    padding-inline: 1rem;
+    padding-top: 0.1rem;
+    border-radius: 50%;
+    z-index: 3;
+    cursor: pointer;
+}
+
+.dot-menu::before{
+    content: "•••";
+    position: relative;
+}
+
+.dot-menu:checked::before{
+    content: "✕";
+}
+
+.dot-menu:hover{
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.dot-drop-down{
+    position: absolute;
+    top: 3rem;
+    right: 0;;
+    display: none;
+    flex-direction: column;
+    color: white;
+    z-index: 4;
+    width: 75%;
+}
+
+.dot-drop-down ul{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.dot-drop-down li button{
+    background-color: rgba(0, 0, 0, 0.4);
+    text-align: center;
+    padding: 1rem;
+    width: 100%;
+    cursor: pointer;
+}
+
+.dot-drop-down li button:hover{
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.card:hover:has(.dot-menu:checked) .dot-drop-down{
+    display: flex;
+}
+
+.dot-drop-down button{
+    outline: none;
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-family: inherit;;
 }

@@ -2,7 +2,7 @@
 @import url("https://fonts.googleapis.com/css?family=Raleway:100,200,300,400,500,600,700,800,900&display=swap");
 
 html{
-    font-family: 'Raleway', 'Work Sans', sans-serif;
+    font-family: 'Work Sans', 'Raleway', sans-serifs;
     background-image: url("/images/Inkbackground.png");
     background-size: cover;
 }

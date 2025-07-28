@@ -9,21 +9,19 @@
 </head>
 <body>
     <main layout:fragment="content">
+
+            <div class="darkBackground"></div>
         <h1>Publicaciones</h1>
 
         <div class="list-wrapper">
-            <button class="scroll-btn left hidden" onclick="scrollCards(-1)"></button>
             <ul id="-list" class="list">
-                <ul id="-loading-skeleton" class="loading-skeleton">
-                    <li><div class="placeholder-card shimmer"><h3></h3></div></li>
-                    <li><div class="placeholder-card shimmer"><h3></h3></div></li>
-                    <li><div class="placeholder-card shimmer"><h3></h3></div></li>
-                    <li><div class="placeholder-card shimmer"><h3></h3></div></li>
-                    <li><div class="placeholder-card shimmer"><h3></h3></div></li>
-                    <li><div class="placeholder-card shimmer"><h3></h3></div></li>
-                </ul>
+                <li class="transparent-card">
+                    <span class="plus-sign"></span>
+                </li>
+                <li th:each="image : ${tattoos}">
+                    <div th:replace="~{shared :: card(${image})}"></div>
+                </li>
             </ul>
-            <button class="scroll-btn right hidden" onclick="scrollCards(1)"></button>
         </div>
         
         <form class="uploadForm" th:action="@{/subirpublicacion}" method="post" enctype="multipart/form-data">
@@ -31,16 +29,27 @@
                 <h2>Publicar nuevo tatuaje</h2>
 
                 <label for="title">Título</label>
-                <input name="title" id="title" type="text">
+                <input name="title" maxlength="255" id="title" type="text">
 
                 <label for="description">Descripción</label>
-                <textarea name="description" oninput="autoResize(this)" id="description" rows="1"></textarea>
+                <textarea name="description" maxlength="10000" oninput="autoResize(this)" id="description" rows="1"></textarea>
 
                 <label for="dropdown">Categoría</label>
-                <select name="type" id="dropdown" class="custom-dropdown">
-                    <option value="1">Diseño</option>
-                    <option value="2">Tatuaje</option>
-                    <option value="3">Tatuaje Curado</option>
+                <div class="dropdown-wrapper">
+                    <label id="active-category" class="dropdown-button" for="open-dropdown">Diseño Disponible</label>
+                    <input id="open-dropdown" type="checkbox" hidden/>
+                    <ul class="dropdown-menu">
+                        <li><button type="button" onclick="document.getElementById('dropdown').value = 1; document.getElementById('active-category').textContent = 'Diseño disponible'">Diseño disponible</button></li>
+                        <li><button type="button" onclick="document.getElementById('dropdown').value = 2; document.getElementById('active-category').textContent = 'Diseño previo'">Diseño previo</button></li>
+                        <li><button type="button" onclick="document.getElementById('dropdown').value = 3; document.getElementById('active-category').textContent = 'Tatuaje recién hecho'">Tatuaje recién hecho</button></li>
+                        <li><button type="button" onclick="document.getElementById('dropdown').value = 4; document.getElementById('active-category').textContent = 'Tatuaje curado'">Tatuaje curado</button></li>
+                    </ul>
+                </div>
+                <select value="1" name="type" id="dropdown" hidden>
+                    <option value="1">Diseño disponible</option>
+                    <option value="1">Diseño previo</option>
+                    <option value="2">Tatuaje recién hecho</option>
+                    <option value="3">Tatuaje curado</option>
                 </select>
             </div>
             <div class="imgAndUploadWrapper">
@@ -56,19 +65,20 @@
                 </div>
                 <div class="send-wrapper">
                     <div class="editOptions">
-                        <button type="button" onclick="clearImage()" class="clearButton">Borrar</button>
-                        <button class="uploadButton" type="submit">Publicar</button>
+                        <button type="button" onclick="clearImage()" class="clearButton"><img th:src="@{/icons/trash.svg}">Borrar</button>
+                        <button class="uploadButton" type="submit"><img th:src="@{/icons/send.svg}">Publicar</button>
                     </div>
                 </div>
             </div>
         </form>
 
+       <script th:src="@{/js/publication-scripts/api.js}"></script>
 
-        <script th:src="@{/js/dragndropmenu.js}"></script>
+        <script th:src="@{/js/publication-scripts/pop-up-message.js}"></script>
+        <script th:src="@{/js/publication-scripts/dragndropmenu.js}"></script>
         <script src="https://cdn.jsdelivr.net/npm/heic2any@0.0.3/dist/heic2any.min.js"></script>
-        <script th:src="@{/js/buttonScroll.js}"></script>
-        <script th:src="@{/js/autoResizeTextarea.js}"></script>
-        <script th:src="@{/js/galleryLoading.js}"></script>
+        <script th:src="@{/js/publication-scripts/autoResizeTextarea.js}"></script>
+        <script th:src="@{/js/publication-scripts/galleryLoading.js}"></script>
 
         
     </main>

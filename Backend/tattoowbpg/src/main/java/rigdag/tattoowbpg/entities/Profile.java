@@ -30,7 +30,8 @@ public class Profile {
     @Column(name = "pronouns", nullable = false, length = 20)
     private String pronouns;
 
-    @Column(name = "description", nullable = false, length = 10240)
+    @Lob
+    @Column(name = "description", nullable = false, columnDefinition = "LONGBLOB")
     private String description;
 
     /*@Column(name = "email_address", nullable=false, length = 255) //SMTP allows for email addresses of up to 254 chars, including @ and domain.

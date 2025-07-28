@@ -19,10 +19,11 @@ public class TattooImage {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name="title", nullable=false, length=511)
+    @Column(name="title", nullable=false, length=511, unique=true)
     private String title;
 
-    @Column(name="description", nullable=false, length = 1023)
+    @Lob
+    @Column(name="description", nullable=false, columnDefinition = "LONGBLOB")
     private String description;
 
     @Column(name="type", nullable=false, length = 511)

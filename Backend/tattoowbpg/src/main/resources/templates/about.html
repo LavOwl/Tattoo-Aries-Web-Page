@@ -26,15 +26,15 @@
                         </li>
                     </ul>
                 
-                    <div class="cyling-input-wrapper"><input class="editableInput" th:value="${profile.getFullname()}" name="fullname" id="name" type="text" placeholder="Nombre"></div>
-                    <div class="cyling-input-wrapper"><input class="editableInput" name="age" id="age" type="date"></div>
-                    <div class="cyling-input-wrapper"><input class="editableInput" th:value="${profile.getPronouns()}" name="pronouns" id="pronouns" type="text" placeholder="Pronombres"></div>
+                    <div class="cyling-input-wrapper"><input class="editableInput" maxlength="255" th:value="${profile.getFullname()}" name="fullname" id="name" type="text" placeholder="Nombre"></div>
+                    <div class="cyling-input-wrapper"><input class="editableInput" name="birthdate" id="birthdate" type="date"></div>
+                    <div class="cyling-input-wrapper"><input class="editableInput" maxlength="255" th:value="${profile.getPronouns()}" name="pronouns" id="pronouns" type="text" placeholder="Pronombres"></div>
                 </div>
 
             </header>
             <section>
                 <label for="description">Descripción</label>
-                <textarea th:text="${profile.getDescription()}" name="description" oninput="autoResize(this)" id="description"></textarea>
+                <textarea th:text="${profile.getDescription()}" maxlength="10000" name="description" oninput="autoResize(this)" id="description"></textarea>
 
                 <div class="send-wrapper">
                     <button class="uploadButton" type="submit">Guardar Cambios</button>
